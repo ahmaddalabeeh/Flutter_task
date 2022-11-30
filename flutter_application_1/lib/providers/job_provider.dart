@@ -26,9 +26,9 @@ class JobProvider with ChangeNotifier {
   void _sortByAlphabetical() {
     jobs.sort((a, b) {
       if (asc) {
-        return a.title.compareTo(b.title);
+        return a.title.trim().toLowerCase().compareTo(b.title.trim().toLowerCase());
       } else {
-        return b.title.compareTo(a.title);
+        return b.title.trim().toLowerCase().compareTo(a.title.trim().toLowerCase());
       }
     });
   }

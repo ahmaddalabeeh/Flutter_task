@@ -6,6 +6,7 @@ import 'package:url_launcher/url_launcher.dart';
 //screen to view the Job's description through fetching the description parameter from the JobModel class
 class JobInformationPage extends StatelessWidget {
   final JobModel jobModel;
+
   const JobInformationPage({super.key, required this.jobModel});
 
   @override
@@ -14,36 +15,47 @@ class JobInformationPage extends StatelessWidget {
     var document = parse(myHtml);
 
     return Scaffold(
-      backgroundColor: Colors.white70,
+      backgroundColor: Colors.grey.shade200,
       floatingActionButton: Padding(
         padding: const EdgeInsets.all(8.0),
         child: ElevatedButton(
           style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all(Colors.black54),
-              shape: MaterialStateProperty.all(const RoundedRectangleBorder(
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(15),
-                      bottomRight: Radius.circular(15))))),
+            backgroundColor: MaterialStateProperty.all(Colors.black54),
+            shape: MaterialStateProperty.all(
+              const RoundedRectangleBorder(
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(15),
+                  bottomRight: Radius.circular(15),
+                ),
+              ),
+            ),
+          ),
           onPressed: _launchURL,
-          child: const Text(
+          child: Text(
             "Go to URL",
-            style: TextStyle(fontSize: 20),
+            style: Theme.of(context).textTheme.headline6?.copyWith(
+                  color: Colors.white70,
+                ),
           ),
         ),
       ),
       appBar: AppBar(
         centerTitle: true,
-        title: const Text(
+        title: Text(
           "Job Description",
-          style:
-              TextStyle(color: Colors.white70, letterSpacing: 4, fontSize: 24),
+          style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                color: Colors.white70,
+              ),
         ),
         backgroundColor: Colors.black54,
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Text(parse(document.body!.text).documentElement!.text),
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+          child: Text(
+            parse(document.body!.text).documentElement!.text,
+            style: Theme.of(context).textTheme.bodyLarge,
+          ),
         ),
       ),
     );

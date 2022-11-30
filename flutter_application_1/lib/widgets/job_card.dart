@@ -5,6 +5,7 @@ import 'package:flutter_application_1/screens/job_info_screen/job_info_screen.da
 // A shared widget that takes the JobModel and its' parameters to view them on screen
 class JobCard extends StatelessWidget {
   final JobModel jobModel;
+
   const JobCard({super.key, required this.jobModel});
 
   @override
@@ -14,43 +15,47 @@ class JobCard extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: InkWell(
         onTap: () => Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => JobInformationPage(jobModel: jobModel))),
+          context,
+          MaterialPageRoute(
+            builder: (context) => JobInformationPage(jobModel: jobModel),
+          ),
+        ),
         child: ListTile(
           shape: const RoundedRectangleBorder(
-              side: BorderSide(color: Colors.black54),
-              borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(15),
-                  bottomRight: Radius.circular(15))),
-          leading: Image.network(jobModel.companyLogo),
+            side: BorderSide(color: Colors.black54),
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(15),
+              bottomRight: Radius.circular(15),
+            ),
+          ),
+          leading: Image.network(
+            jobModel.companyLogo,
+            height: size.height * 0.2,
+            fit: BoxFit.contain,
+          ),
           title: Text(
             jobModel.title,
-            style: const TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.w600,
-                color: Colors.black54),
+            style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                  color: Colors.black87,
+                ),
           ),
           subtitle: Text(
-            "Sal. ${jobModel.salary}",
-            style: const TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.w600,
-                color: Colors.black54),
+            jobModel.companyName,
+            style: Theme.of(context).textTheme.subtitle1?.copyWith(
+                  color: Colors.black54,
+                ),
+          ),
+          trailing: Text(
+            jobModel.salary,
+            style: Theme.of(context).textTheme.subtitle1?.copyWith(
+                  color: Colors.green,
+                ),
           ),
         ),
       ),
     );
   }
 }
-
-
-
-
-
-
-
-
 
 // Container(
 //       margin: const EdgeInsets.all(10),

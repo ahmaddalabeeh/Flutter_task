@@ -13,11 +13,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-      providers: [
-        Provider<JobProvider>(
-          create: (context) => JobProvider(),
-        )
-      ],
+      providers: [ChangeNotifierProvider(create: (context) => JobProvider())],
       child: const MaterialApp(
         title: "Job App",
         debugShowCheckedModeBanner: false,
